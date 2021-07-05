@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Basic Banking App</string>
+    <string name="Title">Banking App</string>
+    <string name="enter">ENTER</string>
+    <string name="name">Name</string>
+    <string name="email_id">Email id</string>
+    <string name="bank_balance">Bank Balance</string>
+    <string name="account_number">Account Number</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="transfer_money">Transfer Money</string>
+    <string name="reciever_title">Select the Account to Transfer Money</string>
+</resources>
