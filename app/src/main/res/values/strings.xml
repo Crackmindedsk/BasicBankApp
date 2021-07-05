@@ -9,4 +9,9 @@
     <string name="phone_number">Phone Number</string>
     <string name="transfer_money">Transfer Money</string>
     <string name="reciever_title">Select the Account to Transfer Money</string>
+    <string name="transactions">Recent Transactions</string>
+    <string name="no_history_available">No History Available</string>
+    <string name="transaction_successful">TRANSACTION SUCCESSFUL</string>
+    <string name="thank_you">THANK YOU</string>
+    <string name="close">CLOSE</string>
 </resources>
