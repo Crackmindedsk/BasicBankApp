@@ -1,9 +1,9 @@
 package sharlene.work.basicbankingapp
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
@@ -11,16 +11,16 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class ProfileActivity:AppCompatActivity() {
     val context:Context=this
-    var Name="Not Exist"
-    var Email="not Exist"
-    var Account_Number="Not Exist"
-    var Phone_Number="Not Exist"
-
+    var Name:String?="Not Exist"
+    var Email:String?="not Exist"
+    var Account_Number:String?="Not Exist"
+    var Phone_Number:String?="Not Exist"
     var Balance=0
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -46,26 +46,26 @@ class ProfileActivity:AppCompatActivity() {
         val extras: Bundle? =intent.extras
 
         if(extras!=null){
-            Name= extras.getString("name").toString()
-            Email=extras.getString("email").toString()
+            Name= extras.getString("name")
+            Email=extras.getString("email")
             Balance=extras.getInt("balance",-1)
-            Account_Number=extras.getString("account").toString()
-            Phone_Number=extras.getString("phone").toString()
+            Account_Number=extras.getString("account")
+            Phone_Number=extras.getString("phone")
 
             val text_name:TextView=findViewById(R.id.name_text)
-            text_name.setText(Name)
+            text_name.text = Name
 
             val text_email:TextView=findViewById(R.id.email_text)
-            text_email.setText(Email)
+            text_email.text = Email
 
             val text_balance:TextView=findViewById(R.id.bank_balance_text)
-            text_balance.setText(Balance)
+            text_balance.text= Balance.toString()
 
             val text_account:TextView=findViewById(R.id.bank_account)
-            text_account.setText(Account_Number)
+            text_account.text = Account_Number
 
             val text_phone:TextView=findViewById(R.id.phone_number)
-            text_phone.setText(Phone_Number)
+            text_phone.text = Phone_Number
         }
         val transfer_button:Button=findViewById(R.id.transfer_button)
         transfer_button.setOnClickListener {
@@ -80,10 +80,57 @@ class ProfileActivity:AppCompatActivity() {
         val userInput:EditText=prompt.findViewById(R.id.dialog_box)
         alertDialogBuilder
             .setCancelable(false)
-            .setPositiveButton("SEND", DialogInterface.OnClickListener(DialogInterface,Int))
-            .setNegativeButton("Cancel",)
+            .setPositiveButton("SEND"){dialog,which->}
+            .setNegativeButton("Cancel"){dialog,which->
+                dialog.dismiss()
+                cancelTransaction()
+            }
+        val alertDialog=alertDialogBuilder.create()
+        alertDialog.show()
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+            val InputNumber=userInput.text.toString()
+            var finalValue=0
+            try {
+                finalValue=InputNumber.toInt()
+            }catch (nfe:NumberFormatException){
+                nfe.printStackTrace()
+            }
+            if (InputNumber.length>9)
+                finalValue= Int.MAX_VALUE
+            if (TextUtils.isEmpty(InputNumber)){
+                val toast=Toast.makeText(applicationContext,"Amount can't be empty",Toast.LENGTH_SHORT)
+                toast.show()
+            }else if (finalValue>Balance){
+                val toast=Toast.makeText(applicationContext,"Your Account don't have sufficient balance",Toast.LENGTH_SHORT)
+                toast.show()
+            }else{
+                val toast=Toast.makeText(applicationContext,"Proceeding",Toast.LENGTH_SHORT)
+                toast.show()
+                val intent=Intent(this@ProfileActivity,RecieverActivity::class.java)
+                intent.putExtra("Transfer Amount :",finalValue)
+                intent.putExtra("Name :",Name)
+                intent.putExtra("Email :",Email)
+                intent.putExtra("Current Balance :",Balance)
+                startActivity(intent)
+                finish()
+            }
+        }
 
-        
+    }
+
+    private fun cancelTransaction(){
+        val exit_button=AlertDialog.Builder(this@ProfileActivity)
+        exit_button.setTitle("Do you want to cancel the transcation?")
+            .setCancelable(false)
+            .setPositiveButton("Yes"){dialogInterface,i->
+                BankDbHelper(this@ProfileActivity).insertTransferData(Name,"Not selected",0,"FAILED")
+                Toast.makeText(this@ProfileActivity,"Transaction Cancelled",Toast.LENGTH_LONG).show()
+            }.setNegativeButton("No"){dialog,which->
+                dialog.dismiss()
+                enterAmount()
+            }
+        val exitAlert=exit_button.create()
+        exitAlert.show()
     }
 
 }
