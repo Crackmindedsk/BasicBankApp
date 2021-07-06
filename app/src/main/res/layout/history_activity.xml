@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        card_view:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        card_view:cardElevation="5dp"
+        android:layout_margin="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sender_name"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:padding="1dp"
+                android:id="@+id/sender_name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sender_name_edit"
+                android:padding="1dp"
+                android:layout_toRightOf="@id/sender_name"
+                android:layout_weight="1"
+                android:text="@string/name" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reciver_name"
+                android:padding="1dp"
+                android:typeface="monospace"
+                android:text="@string/reciever_name"
+                android:layout_below="@id/sender_name"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/reciever_name_edit"
+                android:padding="1dp"
+                android:typeface="monospace"
+                android:text="@string/name"
+                android:layout_toRightOf="@id/reciver_name"
+                android:layout_below="@id/sender_name_edit"
+                android:layout_weight="1"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                android:padding="1dp"
+                android:id="@+id/transfer_text"
+                android:text="Transfer Amount :"
+                android:layout_below="@id/reciver_name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/transfer_text_edit"
+                android:text="@string/amount"
+                android:padding="1dp"
+                android:layout_below="@id/reciever_name_edit"
+                android:layout_toRightOf="@id/transfer_text"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:clickable="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/status"
+                android:padding="1dp"
+                android:typeface="monospace"
+                android:text="@string/status"
+                android:textStyle="bold"
+                android:layout_below="@id/transfer_text"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/status_edit"
+                android:padding="1dp"
+                android:layout_weight="1"
+                android:text="@string/transaction_status"
+                android:layout_below="@id/transfer_text_edit"
+                android:layout_toRightOf="@id/status"
+                android:typeface="monospace"/>
+
+
+
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -15,4 +15,9 @@
     <string name="thank_you">THANK YOU</string>
     <string name="close">CLOSE</string>
     <string name="enter_the_amount_here">Enter the Amount Here</string>
+    <string name="sender_name">Sender's Name :</string>
+    <string name="reciever_name">Reciever's Name :</string>
+    <string name="amount">Amount</string>
+    <string name="status">Status :</string>
+    <string name="transaction_status">Transaction Status</string>
 </resources>
