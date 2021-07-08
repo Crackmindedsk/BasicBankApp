@@ -35,7 +35,7 @@ class TransactionActivity :AppCompatActivity() {
             val model:Data= Data(cursor.getString(1),cursor.getString(2),balanceAmt,cursor.getString(4))
             historyList.add(model)
         }
-        historyAdapter=TransactionAdapter(TransactionActivity.this,historyList)
+        historyAdapter=TransactionAdapter(this,historyList)
         recyclerView.adapter=historyAdapter
 
         if (historyList.size==0){
