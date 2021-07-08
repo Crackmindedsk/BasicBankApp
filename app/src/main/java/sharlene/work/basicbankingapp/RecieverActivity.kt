@@ -4,14 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sharlene.work.basicbankingapp.model.Data
 import sharlene.work.basicbankingapp.model.RecieverAdapter
-import sharlene.work.basicbankingapp.BankDbHelper
 
 class RecieverActivity:AppCompatActivity() {
+    var dbHelper:BankDbHelper?=null
     var recieverList:MutableList<Data> =ArrayList()
     var Name:String?=null
     var Email:String?=null
@@ -20,11 +22,12 @@ class RecieverActivity:AppCompatActivity() {
     var recieverBalance:Int?=null
     var balance:Int?=null
     var transferAmt:Int?=null
-
+    var remainingAmt:Int?=null
     var adapter:RecieverAdapter?=null
     var viewList:RecyclerView?=null
     val layoutManager:RecyclerView.LayoutManager=LinearLayoutManager(this)
-    private val listener:RecyclerView.RecyclerListener?=null
+    private val listener:RecieverAdapter.RecyclerviewClickListener?=null
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater=menuInflater
         inflater.inflate(R.menu.main_menu,menu)
@@ -47,7 +50,8 @@ class RecieverActivity:AppCompatActivity() {
         setContentView(R.layout.reciever_activity)
         viewList=findViewById(R.id.reciever_list_view)
         viewList!!.layoutManager=layoutManager
-        val db = BankDbHelper(this)
+        //animation
+        dbHelper = BankDbHelper(this)
         val bundle=intent.extras
         if (bundle!=null){
             Name=bundle.getString("name")
@@ -62,7 +66,44 @@ class RecieverActivity:AppCompatActivity() {
     private fun showData(Email:String?){
         val db=BankDbHelper
         recieverList.clear()
-        val cursor=db.readSelect(Email)
+        val cursor= dbHelper!!.readSelect(Email!!)
+        cursor?.moveToFirst()
+        do{
+            val name= cursor?.getString(1)
+            val balance=cursor?.getInt(3)
+            val email=cursor?.getString(2)
+            val model=Data(cursor?.getString(1), cursor?.getString(2), balance!!)
+            recieverList.add(model)
+        }while (cursor!!.moveToNext())
+    }
+
+    fun selectUser(position:Int){
+        recieverEmail=recieverList[position].email
+        println(recieverEmail)
+        val cursor=BankDbHelper(this).readAData(recieverEmail!!)
+        while (cursor!!.moveToNext()){
+            recieverBalance=cursor.getInt(3)
+            recieverName=cursor.getString(1)
+            val finalAmount= recieverBalance!! + transferAmt!!
+            BankDbHelper(this).update(Email!!,remainingAmt.toString())
+            BankDbHelper(this).insertTransferData(Name,recieverName!!, transferAmt!!,"SUCCESSFUL")
+            Toast.makeText(this,"Transaction Successful",Toast.LENGTH_LONG).show()
+            //successfull splash
+        }
+    }
+
+    override fun onBackPressed() {
+        val exitButton=AlertDialog.Builder(this)
+        exitButton.setTitle("Do you want to cancel the transaction?")
+            .setCancelable(false)
+            .setPositiveButton("Yes"){dialog,i->
+                BankDbHelper(this).insertTransferData(Name,"Not selected",transferAmt!!,"FAILED")
+                Toast.makeText(this,"Transaction Cancelled!",Toast.LENGTH_LONG).show()
+                startActivity(Intent(this,ViewListActivity::class.java))
+                finish()
+            }.setNegativeButton("No",null)
+        val alert=exitButton.create()
+        alert.show()
     }
 
 }

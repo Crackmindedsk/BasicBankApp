@@ -35,7 +35,7 @@ class BankDbHelper(context: Context) : SQLiteOpenHelper(context, databaseName,nu
         val select = "SELECT * FROM user WHERE email = '$Email'"
         return db.rawQuery(select, null)
     }
-    public fun readSelect(Email:String): Cursor? {
+    fun readSelect(Email:String): Cursor? {
         val db=writableDatabase
         val select="SELECT * FROM user WHERE email <> '$Email'"
         return db.rawQuery(select,null)
