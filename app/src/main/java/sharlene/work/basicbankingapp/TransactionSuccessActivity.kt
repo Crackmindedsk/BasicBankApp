@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
-class TransactionSuccessActivity:AppCompatActivity() {
+class TransactionSuccessActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.main_menu, menu)
@@ -16,9 +17,9 @@ class TransactionSuccessActivity:AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id=item.itemId
-        if (id==R.id.action_history){
-            val intent=Intent(this,TransactionActivity::class.java)
+        val id = item.itemId
+        if (id == R.id.action_history) {
+            val intent = Intent(this, TransactionActivity::class.java)
             startActivity(intent)
             return true
         }
@@ -28,9 +29,9 @@ class TransactionSuccessActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.transaction_success_activity)
-        val button:Button=findViewById(R.id.back_to_home)
-        button.setOnClickListener{
-            val intent=Intent(this,HomeActivity::class.java)
+        val button = findViewById<View>(R.id.back_to_home) as Button
+        button.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

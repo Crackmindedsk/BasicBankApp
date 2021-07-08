@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val handler= Handler()
+        val handler = Handler()
         handler.postDelayed({
             val homeIntent = Intent(this@MainActivity, HomeActivity::class.java)
             startActivity(homeIntent)
@@ -19,6 +19,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val SPLASH_TIME_OUT=4000
+        private const val SPLASH_TIME_OUT = 4000
     }
 }

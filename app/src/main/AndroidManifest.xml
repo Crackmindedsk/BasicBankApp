@@ -9,6 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BasicBankingApp">
+        <activity android:name=".HomeActivity"/>
+        <activity android:name=".TransactionActivity"/>
+        <activity android:name=".TransactionSuccessActivity"/>
+        <activity android:name=".RecieverActivity"/>
+        <activity android:name=".ProfileActivity"/>
+        <activity android:name=".ViewListActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
