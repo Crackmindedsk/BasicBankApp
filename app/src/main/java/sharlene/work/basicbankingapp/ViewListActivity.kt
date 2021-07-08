@@ -7,10 +7,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Adapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import sharlene.work.basicbankingapp.model.BankAdapter
 import sharlene.work.basicbankingapp.model.Data
 import sharlene.work.basicbankingapp.model.RecieverAdapter
 
@@ -21,7 +21,7 @@ class ViewListActivity:AppCompatActivity() {
     var Balance:ArrayList<Int> ?=null
     var Phone:ArrayList<String> ?=null
     var Account:ArrayList<String> ?=null
-    var adapter:Adapter ?=null
+    var adapter:BankAdapter ?=null
     val userlist:List<Data> ?=null
     private var listener:RecieverAdapter.RecyclerviewClickListener ?=null
 
@@ -54,9 +54,9 @@ class ViewListActivity:AppCompatActivity() {
         Account= ArrayList()
         storeData()
         setOnClickListener()
-        adapter=Adapter(this@ViewListActivity,Name!!,Email!!,Balance!!,listener)
+        adapter= BankAdapter(this,Name!!,Email!!,Balance!!,listener)
         //animation
-        viewList.adapter=adapter
+        viewList.adapter= adapter
         viewList.layoutManager=LinearLayoutManager(this)
 
 
