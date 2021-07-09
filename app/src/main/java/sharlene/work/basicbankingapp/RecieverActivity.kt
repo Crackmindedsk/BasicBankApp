@@ -92,6 +92,8 @@ class RecieverActivity : AppCompatActivity() {
             BankDbHelper(this).insertTransferData(Name, recieverName!!, transferAmt!!, "SUCCESSFUL")
             Toast.makeText(this, "Transaction Successful", Toast.LENGTH_LONG).show()
             //successfull splash
+            startActivity(Intent(this,MainActivity::class.java))
+            finish()
         }
     }
 
