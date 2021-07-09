@@ -14,7 +14,7 @@ public class TransactionAdapter(private val context: Context, var historyData: L
 
     override fun onCreateViewHolder(
         parent: ViewGroup, viewType: Int
-    ): MyViewHolder {
+    ): TransactionAdapter.MyViewHolder {
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val view: View = inflater.inflate(R.layout.history_activity, parent, false)
         return MyViewHolder(view)
@@ -35,16 +35,9 @@ public class TransactionAdapter(private val context: Context, var historyData: L
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: TextView
-        var reciever: TextView
-        var transferAmt: TextView
-        var transferstatus: TextView
-
-        init {
-            title = itemView.findViewById(R.id.sender_name_edit) as TextView
-            reciever = itemView.findViewById(R.id.reciever_name_edit) as TextView
-            transferAmt = itemView.findViewById(R.id.transfer_text_edit) as TextView
-            transferstatus = itemView.findViewById(R.id.status_edit) as TextView
-        }
+        var title: TextView=itemView.findViewById(R.id.sender_name_edit)
+        var reciever: TextView=itemView.findViewById(R.id.reciever_name_edit)
+        var transferAmt: TextView=itemView.findViewById(R.id.transfer_text_edit)
+        var transferstatus: TextView=itemView.findViewById(R.id.status_edit)
     }
 }
