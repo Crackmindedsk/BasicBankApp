@@ -12,7 +12,7 @@ import sharlene.work.basicbankingapp.model.TransactionAdapter
 class TransactionActivity : AppCompatActivity() {
     var historyList: MutableList<Data> = ArrayList()
     lateinit var recyclerView: RecyclerView
-    var historyAdapter: RecyclerView.Adapter<TransactionAdapter.MyViewHolder> ?= null
+    var historyAdapter: TransactionAdapter? = null
     var layoutManager: RecyclerView.LayoutManager? = null
     var empty: TextView? = null
 

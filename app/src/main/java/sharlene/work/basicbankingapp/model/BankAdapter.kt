@@ -45,9 +45,7 @@ class BankAdapter(
             title = itemView.findViewById<View>(R.id.list_name_edit) as TextView
             sender = itemView.findViewById<View>(R.id.list_email_edit) as TextView
             balance = itemView.findViewById<View>(R.id.list_balance_edit) as TextView
-            itemView.setOnClickListener{
-                v
-            }
+            itemView.setOnClickListener(this)
         }
     }
 
