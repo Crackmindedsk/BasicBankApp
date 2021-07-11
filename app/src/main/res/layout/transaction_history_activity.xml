@@ -12,7 +12,7 @@
         android:id="@+id/transfer_history"
         android:padding="2dp"
         android:gravity="center"
-        android:typeface="monospace"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/transactions"
         android:layout_marginTop="15dp"
         android:textAllCaps="true"
@@ -25,15 +25,20 @@
         android:layout_below="@id/transfer_history"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/recycler_history"
-        android:padding="10dp"/>
+        android:padding="10dp"
+        android:layout_marginTop="10dp"/>
+
     <TextView
+        android:id="@+id/empty_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/empty_text"
         android:layout_below="@id/transfer_history"
+        android:fontFamily="sans-serif-medium"
         android:text="@string/no_history_available"
-        android:textSize="15dp"
-        android:visibility="invisible"/>
+        android:textSize="20sp"
+        android:visibility="invisible"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
