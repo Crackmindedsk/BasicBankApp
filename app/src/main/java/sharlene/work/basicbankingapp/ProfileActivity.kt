@@ -81,7 +81,8 @@ class ProfileActivity : AppCompatActivity() {
         val userInput: EditText = prompt.findViewById<View>(R.id.dialog_box) as EditText
         alertDialogBuilder
             .setCancelable(false)
-            .setPositiveButton("SEND") { _, _ -> }
+            .setPositiveButton("SEND") { _, _ ->
+            }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
                 cancelTransaction()

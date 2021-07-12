@@ -9,13 +9,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/prompt_text"
-        android:text="@string/enter_the_amount_here" />
+        android:text="@string/enter_the_amount_here"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="bold"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/dialog_box"
-        android:inputType="number">
+        android:inputType="number"
+        android:fontFamily="sans-serif-medium">
         <requestFocus/>
     </EditText>
 </LinearLayout>

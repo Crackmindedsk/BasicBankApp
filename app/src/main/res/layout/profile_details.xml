@@ -101,12 +101,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="200dp"
         android:id="@+id/transfer_button"
         android:layout_gravity="center"
         android:gravity="center"
         android:backgroundTint="@color/button_color"
         android:textColor="@color/button_text"
-        android:text="@string/transfer_money"/>
+        android:text="@string/transfer_money"
+        android:textSize="25dp"/>
 
 </LinearLayout>
