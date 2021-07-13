@@ -26,7 +26,7 @@ class RecieverActivity : AppCompatActivity() {
     var remainingAmt: Int? = null
     var adapter: RecieverAdapter? = null
     var viewList: RecyclerView? = null
-    val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
+    val layoutManager1: RecyclerView.LayoutManager = LinearLayoutManager(this)
     private val listener: RecieverAdapter.RecyclerviewClickListener? = null
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -50,18 +50,18 @@ class RecieverActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.reciever_activity)
         viewList = findViewById<View>(R.id.reciever_list_view) as RecyclerView
-        viewList!!.layoutManager = layoutManager
+        viewList!!.layoutManager = layoutManager1
         //animation
         dbHelper = BankDbHelper(this)
-        val bundle = intent.extras
+        val bundle:Bundle? = intent.extras
         if (bundle != null) {
             Name = bundle.getString("name")
             Email = bundle.getString("email")
-            transferAmt = bundle.getInt("transfer amount")
-            balance = bundle.getInt("Current Balance")
+            transferAmt = bundle.getInt("amount")
+            balance = bundle.getInt("balance")
             showData(Email)
         }
-        adapter = RecieverAdapter(this, recieverList, listener!!)
+        adapter = RecieverAdapter(this, recieverList, listener)
         viewList!!.adapter = adapter
     }
 
@@ -73,7 +73,7 @@ class RecieverActivity : AppCompatActivity() {
             val name = cursor?.getString(1)
             val balance = cursor!!.getInt(3)
             val email = cursor.getString(2)
-            val model = Data(cursor.getString(1), cursor.getString(2), balance)
+            val model = Data(name, email, balance)
             recieverList.add(model)
         } while (cursor!!.moveToNext())
     }

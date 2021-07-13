@@ -12,7 +12,7 @@ import sharlene.work.basicbankingapp.RecieverActivity
 class RecieverAdapter(
     var recieverlist: RecieverActivity,
     var modelList: List<Data>,
-    private val listener: RecyclerviewClickListener
+    private val listener: RecyclerviewClickListener?
 ) : RecyclerView.Adapter<RecieverAdapter.MyViewHolder>() {
     private val context: Context? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

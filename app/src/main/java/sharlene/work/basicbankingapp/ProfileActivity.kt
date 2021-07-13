@@ -89,6 +89,7 @@ class ProfileActivity : AppCompatActivity() {
             }
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()
+
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             val InputNumber = userInput.text.toString()
             var finalValue = 0
@@ -110,13 +111,13 @@ class ProfileActivity : AppCompatActivity() {
                 )
                 toast.show()
             } else {
-                val toast = Toast.makeText(applicationContext, "Proceeding", Toast.LENGTH_SHORT)
+                val toast = Toast.makeText(applicationContext, "Proceeding", Toast.LENGTH_LONG)
                 toast.show()
-                val intent = Intent(this@ProfileActivity, RecieverActivity::class.java)
-                intent.putExtra("Transfer Amount :", finalValue)
-                intent.putExtra("Name :", Name)
-                intent.putExtra("Email :", Email)
-                intent.putExtra("Current Balance :", Balance)
+                val intent = Intent(this,RecieverActivity::class.java)
+//                intent.putExtra("amount", finalValue)
+//                intent.putExtra("name", Name)
+//                intent.putExtra("email", Email)
+//                intent.putExtra("balance", Balance)
                 startActivity(intent)
                 finish()
             }

@@ -72,12 +72,13 @@ class BankDbHelper(context: Context?) : SQLiteOpenHelper(context, databaseName, 
 
     fun insertTransferData(from: String?, to: String, amount: Int, status: String) {
         val db = this.writableDatabase
-        val values = ContentValues()
-        values.put("fromName", from)
-        values.put("toName", to)
-        values.put("amount", amount)
-        values.put("status", status)
-        db.insert("transact", null, values)
+        val values = ContentValues().apply {
+            put("fromName", from)
+            put("toName", to)
+            put("amount", amount)
+            put("status", status)
+        }
+        db?.insert("transact", null, values)
     }
 
     fun readTransfer(): Cursor? {

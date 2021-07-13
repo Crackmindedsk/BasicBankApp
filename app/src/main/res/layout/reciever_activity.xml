@@ -11,9 +11,9 @@
         android:id="@+id/reciever_list"
         android:text="@string/reciever_title"
         android:textAlignment="center"
-        android:textSize="12sp"
+        android:textSize="20sp"
         android:layout_marginTop="15dp"
-        android:typeface="monospace"
+        android:fontFamily="sans-serif-medium"
         android:textStyle="bold"
         android:textAllCaps="true"/>
     <androidx.recyclerview.widget.RecyclerView
