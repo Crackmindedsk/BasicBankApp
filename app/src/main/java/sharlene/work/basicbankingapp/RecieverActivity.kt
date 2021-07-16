@@ -53,14 +53,14 @@ class RecieverActivity : AppCompatActivity() {
         viewList!!.layoutManager = layoutManager1
         //animation
         dbHelper = BankDbHelper(this)
-        val bundle:Bundle? = intent.extras
-        if (bundle != null) {
-            Name = bundle.getString("name")
-            Email = bundle.getString("email")
-            transferAmt = bundle.getInt("amount")
-            balance = bundle.getInt("balance")
+
+//        val bundle:Bundle? = intent.extras
+//        if (bundle != null) {
+//            Name = bundle.getString("name")
+//            Email = bundle.getString("email")
+//            transferAmt = bundle.getInt("amount")
+//            balance = bundle.getInt("balance")
             showData(Email)
-        }
         adapter = RecieverAdapter(this, recieverList, listener)
         viewList!!.adapter = adapter
     }
@@ -92,7 +92,7 @@ class RecieverActivity : AppCompatActivity() {
             BankDbHelper(this).insertTransferData(Name, recieverName!!, transferAmt!!, "SUCCESSFUL")
             Toast.makeText(this, "Transaction Successful", Toast.LENGTH_LONG).show()
             //successfull splash
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this,TransactionSuccessActivity::class.java))
             finish()
         }
     }
