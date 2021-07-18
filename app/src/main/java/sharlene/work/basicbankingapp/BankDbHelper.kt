@@ -18,9 +18,10 @@ class BankDbHelper(context: Context?) : SQLiteOpenHelper(context, databaseName, 
         db?.execSQL(createTransact)
 
         insert("Sharlene", "sharlene@gmail.com", 10000, "9363803949", "XXXXXXXXXXXX4758", db)
-        insert("Sumit", "sumit23@yahoo.com", 10000, "3467892547", "XXXXXXXXXXXX2929", db)
+        insert("Sumit", "sumit23@yahoo.com", 10000, "7467892547", "XXXXXXXXXXXX2929", db)
         insert("Mayuri", "mayuri89@gmail.com", 6000, "7349006729", "XXXXXXXXXXXX3609", db)
         insert("Digvijay", "kdigvijay@gmail.com", 10000, "7902573940", "XXXXXXXXXXXX2470", db)
+        insert("Maithilee","maithu@gmail.com",20000,"7678392038","XXXXXXXXXXXX4790",db)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldV: Int, newV: Int) {
