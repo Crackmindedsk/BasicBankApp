@@ -51,31 +51,33 @@ class RecieverActivity : AppCompatActivity() {
         setContentView(R.layout.reciever_activity)
         viewList = findViewById<View>(R.id.reciever_list_view) as RecyclerView
         viewList!!.layoutManager = layoutManager1
+        recieverList=ArrayList()
         //animation
         dbHelper = BankDbHelper(this)
-
-//        val bundle:Bundle? = intent.extras
-//        if (bundle != null) {
-//            Name = bundle.getString("name")
-//            Email = bundle.getString("email")
-//            transferAmt = bundle.getInt("amount")
-//            balance = bundle.getInt("balance")
+        val bundle:Bundle? = intent.extras
+        if (bundle != null) {
+            Name = bundle.getString("name")
+            Email = bundle.getString("email")
+            transferAmt = bundle.getInt("amount")
+            balance = bundle.getInt("balance")
             showData(Email)
-        adapter = RecieverAdapter(this, recieverList, listener)
-        viewList!!.adapter = adapter
+        }
+
     }
 
     private fun showData(Email: String?) {
         recieverList.clear()
-        val cursor = dbHelper!!.readSelect(Email!!)
+        val cursor = dbHelper?.readSelect(Email!!)
         cursor?.moveToFirst()
         do {
             val name = cursor?.getString(1)
-            val balance = cursor!!.getInt(3)
-            val email = cursor.getString(2)
-            val model = Data(name, email, balance)
+            val balance = cursor?.getInt(3)
+            val email = cursor?.getString(2)
+            val model = Data(cursor?.getString(1), cursor?.getString(2), balance!!)
             recieverList.add(model)
         } while (cursor!!.moveToNext())
+        adapter = RecieverAdapter(this, recieverList, listener)
+        viewList!!.adapter = adapter
     }
 
     fun selectUser(position: Int) {

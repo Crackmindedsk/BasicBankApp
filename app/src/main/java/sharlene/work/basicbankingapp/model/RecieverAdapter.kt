@@ -41,7 +41,7 @@ class RecieverAdapter(
             email = itemView.findViewById(R.id.list_email_edit) as TextView
             balance = itemView.findViewById(R.id.list_balance_edit) as TextView
             itemView.setOnClickListener(View.OnClickListener {
-                recieverlist.selectUser(adapterPosition)
+                recieverlist.selectUser(absoluteAdapterPosition)
             })
         }
 

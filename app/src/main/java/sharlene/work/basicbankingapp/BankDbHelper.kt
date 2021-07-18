@@ -42,7 +42,7 @@ class BankDbHelper(context: Context?) : SQLiteOpenHelper(context, databaseName, 
 
     fun readSelect(Email: String): Cursor? {
         val db = writableDatabase
-        val select = "SELECT * FROM user WHERE email <> '$Email'"
+        val select = "SELECT * FROM user WHERE email !='$Email'"
         return db.rawQuery(select, null)
     }
 
