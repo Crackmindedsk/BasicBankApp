@@ -7,10 +7,20 @@
     android:layout_height="match_parent"
     android:gravity="center"
     tools:context=".TransactionSuccessActivity">
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/ic_success"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/success"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/successinteraction">
+
+    </com.airbnb.lottie.LottieAnimationView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -24,6 +24,7 @@ class RecieverActivity : AppCompatActivity() {
     var balance: Int? = null
     var transferAmt: Int? = null
     var remainingAmt: Int? = null
+    var finalAmt:Int?=null
     var adapter: RecieverAdapter? = null
     var viewList: RecyclerView? = null
     val layoutManager1: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -51,6 +52,7 @@ class RecieverActivity : AppCompatActivity() {
         setContentView(R.layout.reciever_activity)
         viewList = findViewById<View>(R.id.reciever_list_view) as RecyclerView
         viewList!!.layoutManager = layoutManager1
+        viewList!!.scheduleLayoutAnimation()
         recieverList=ArrayList()
         //animation
         dbHelper = BankDbHelper(this)
@@ -87,14 +89,15 @@ class RecieverActivity : AppCompatActivity() {
         while (cursor!!.moveToNext()) {
             recieverBalance = cursor.getInt(3)
             recieverName = cursor.getString(1)
-            val finalAmount = recieverBalance!! + transferAmt!!
-            BankDbHelper(this).update(Email!!, finalAmount.toString())
+            finalAmt= recieverBalance!! + transferAmt!!
+            BankDbHelper(this).update(recieverEmail!!,finalAmt.toString())
             remainingAmt = balance!! - transferAmt!!
             BankDbHelper(this).update(Email!!, remainingAmt.toString())
             BankDbHelper(this).insertTransferData(Name, recieverName!!, transferAmt!!, "SUCCESSFUL")
-            Toast.makeText(this, "Transaction Successful", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Transaction Successful", Toast.LENGTH_SHORT).show()
             //successfull splash
-            startActivity(Intent(this,TransactionSuccessActivity::class.java))
+            val intent=Intent(this,TransactionSuccessActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }
